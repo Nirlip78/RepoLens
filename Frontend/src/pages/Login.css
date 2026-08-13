@@ -1,0 +1,375 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* ---------------------------------------------------------------- */
+/* Design tokens for this page only, scoped under .login-page       */
+/* ---------------------------------------------------------------- */
+.login-page {
+  --bg-0: #090c12;
+  --bg-1: #0d1119;
+  --surface: #11151f;
+  --border: #1f2632;
+  --border-soft: #171d29;
+  --text-primary: #e7ecf6;
+  --text-muted: #8993a8;
+  --text-faint: #5b647a;
+  --accent-a: #7c9cff;
+  --accent-b: #4fd1c5;
+  --danger: #ff6b6b;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background: radial-gradient(
+      120% 90% at 50% -10%,
+      #131a29 0%,
+      var(--bg-1) 45%,
+      var(--bg-0) 100%
+    );
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------------- */
+/* Background decoration: glows + pipeline trace                    */
+/* ---------------------------------------------------------------- */
+.login-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.28;
+}
+
+.glow-a {
+  width: 480px;
+  height: 480px;
+  top: -180px;
+  left: -140px;
+  background: var(--accent-a);
+}
+
+.glow-b {
+  width: 420px;
+  height: 420px;
+  bottom: -200px;
+  right: -120px;
+  background: var(--accent-b);
+  opacity: 0.2;
+}
+
+.login-pipeline {
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(900px, 92vw);
+  height: auto;
+  opacity: 0.55;
+}
+
+.login-pipeline path#tracePath {
+  animation: dash-drift 6s linear infinite;
+}
+
+@keyframes dash-drift {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.trace-node circle {
+  fill: var(--bg-1);
+  stroke: var(--accent-a);
+  stroke-width: 1.2;
+}
+
+.trace-node path {
+  stroke: var(--accent-b);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trace-node:last-child circle:last-child {
+  fill: var(--accent-b);
+  stroke: none;
+}
+
+.trace-node text {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  fill: var(--accent-b);
+}
+
+.trace-pulse {
+  filter: drop-shadow(0 0 4px rgba(124, 156, 255, 0.9));
+}
+
+/* ---------------------------------------------------------------- */
+/* Card                                                              */
+/* ---------------------------------------------------------------- */
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  background: linear-gradient(180deg, #12161f 0%, #0e121a 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px 30px;
+  box-shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(124, 156, 255, 0.03);
+  backdrop-filter: blur(6px);
+}
+
+.login-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-bottom: 22px;
+}
+
+.login-logo-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+}
+
+.login-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 23px;
+  text-align: center;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.login-subtitle {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Form                                                               */
+/* ---------------------------------------------------------------- */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.login-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.login-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-forgot {
+  font-size: 11.5px;
+  color: var(--accent-a);
+  text-decoration: none;
+  font-family: var(--font-body);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.login-forgot:hover {
+  color: var(--accent-b);
+}
+
+.login-field input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 11px 13px;
+  font-size: 14px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.login-field input::placeholder {
+  color: var(--text-faint);
+}
+
+.login-field input:focus {
+  border-color: var(--accent-a);
+  box-shadow: 0 0 0 3px rgba(124, 156, 255, 0.15);
+}
+
+.login-submit {
+  margin-top: 6px;
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: #0a0d13;
+  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.2s ease, filter 0.15s ease;
+  box-shadow: 0 10px 24px -10px rgba(124, 156, 255, 0.55);
+}
+
+.login-submit:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.login-submit:active {
+  transform: translateY(0);
+}
+
+.login-submit:focus-visible,
+.login-github:focus-visible,
+.login-field input:focus-visible,
+.login-forgot:focus-visible {
+  outline: 2px solid var(--accent-b);
+  outline-offset: 2px;
+}
+
+.login-signup {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 18px 0 0;
+}
+
+.login-signup a {
+  color: var(--accent-a);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-signup a:hover {
+  color: var(--accent-b);
+}
+
+/* ---------------------------------------------------------------- */
+/* Divider + GitHub button                                          */
+/* ---------------------------------------------------------------- */
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 18px;
+}
+
+.login-divider span {
+  flex: 1;
+  height: 1px;
+  background: var(--border-soft);
+}
+
+.login-divider p {
+  margin: 0;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+}
+
+.login-github {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 11px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: #141a24;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease,
+    transform 0.12s ease;
+}
+
+.login-github:hover {
+  border-color: var(--accent-a);
+  background: #171e2a;
+  transform: translateY(-1px);
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                        */
+/* ---------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .login-pipeline {
+    opacity: 0.3;
+    top: 4%;
+  }
+  .glow-a,
+  .glow-b {
+    filter: blur(70px);
+    opacity: 0.16;
+  }
+}
+
+@media (max-width: 420px) {
+  .login-card {
+    padding: 28px 22px 24px;
+    border-radius: 16px;
+  }
+  .login-pipeline {
+    display: none;
+  }
+  .login-title {
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-pipeline path#tracePath,
+  .trace-pulse animateMotion {
+    animation: none !important;
+  }
+  .login-pipeline * {
+    animation-play-state: paused !important;
+  }
+}

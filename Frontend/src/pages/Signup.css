@@ -1,0 +1,640 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+
+/* ============================================================
+   DESIGN TOKENS
+   Same visual language as Login page
+   ============================================================ */
+
+.signup-page {
+  --bg-0: #090c12;
+  --bg-1: #0d1119;
+  --surface: #11151f;
+
+  --border: #1f2632;
+  --border-soft: #171d29;
+
+  --text-primary: #e7ecf6;
+  --text-muted: #8993a8;
+  --text-faint: #5b647a;
+
+  --accent-a: #7c9cff;
+  --accent-b: #4fd1c5;
+
+  --danger: #ff6b6b;
+
+  --radius-lg: 20px;
+  --radius-md: 12px;
+
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  position: relative;
+
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 32px 20px;
+
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      120% 90% at 50% -10%,
+      #131a29 0%,
+      var(--bg-1) 45%,
+      var(--bg-0) 100%
+    );
+
+  font-family: var(--font-body);
+
+  color: var(--text-primary);
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   BACKGROUND
+   ============================================================ */
+
+.signup-bg {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+/* Blue glow */
+
+.signup-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(90px);
+
+  opacity: 0.28;
+}
+
+
+/* Top-left */
+
+.signup-glow-a {
+  width: 480px;
+  height: 480px;
+
+  top: -180px;
+  left: -140px;
+
+  background: var(--accent-a);
+}
+
+
+/* Bottom-right */
+
+.signup-glow-b {
+  width: 420px;
+  height: 420px;
+
+  bottom: -200px;
+  right: -120px;
+
+  background: var(--accent-b);
+
+  opacity: 0.2;
+}
+
+
+/* ============================================================
+   PIPELINE
+   ============================================================ */
+
+.signup-pipeline {
+  position: absolute;
+
+  top: 9%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: min(900px, 92vw);
+
+  height: auto;
+
+  opacity: 0.55;
+}
+
+
+/* Moving dashed line */
+
+.signup-pipeline path#signupTracePath {
+  animation: signup-dash-drift 6s linear infinite;
+}
+
+
+@keyframes signup-dash-drift {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+
+/* Pipeline nodes */
+
+.signup-trace-node circle {
+  fill: var(--bg-1);
+
+  stroke: var(--accent-a);
+
+  stroke-width: 1.2;
+}
+
+
+.signup-trace-node path {
+  stroke: var(--accent-b);
+
+  fill: none;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+}
+
+
+.signup-trace-node:last-child circle:last-child {
+  fill: var(--accent-b);
+
+  stroke: none;
+}
+
+
+.signup-trace-node text {
+  font-family: var(--font-mono);
+
+  font-size: 8px;
+
+  fill: var(--accent-b);
+}
+
+
+/* Moving pulse */
+
+.signup-trace-pulse {
+  filter:
+    drop-shadow(
+      0 0 4px rgba(124, 156, 255, 0.9)
+    );
+}
+
+
+/* ============================================================
+   SIGNUP CARD
+   ============================================================ */
+
+.signup-card {
+  position: relative;
+
+  z-index: 1;
+
+  width: 100%;
+
+  max-width: 400px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      180deg,
+      #12161f 0%,
+      #0e121a 100%
+    );
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-lg);
+
+  padding: 32px 32px 28px;
+
+  box-shadow:
+    0 30px 60px -25px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(124, 156, 255, 0.03);
+
+  backdrop-filter: blur(6px);
+}
+
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+
+.signup-logo {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-bottom: 20px;
+}
+
+
+.signup-logo-mark {
+  flex-shrink: 0;
+}
+
+
+.signup-logo-text {
+  font-family: var(--font-display);
+
+  font-weight: 600;
+
+  font-size: 17px;
+
+  letter-spacing: 0.01em;
+
+  color: var(--text-primary);
+}
+
+
+/* ============================================================
+   TITLE
+   ============================================================ */
+
+.signup-title {
+  font-family: var(--font-display);
+
+  font-weight: 600;
+
+  font-size: 23px;
+
+  line-height: 1.2;
+
+  text-align: center;
+
+  margin: 0 0 8px;
+
+  letter-spacing: -0.01em;
+}
+
+
+.signup-subtitle {
+  font-size: 13.5px;
+
+  line-height: 1.5;
+
+  color: var(--text-muted);
+
+  text-align: center;
+
+  margin: 0 0 24px;
+}
+
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.signup-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+
+.signup-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.signup-label {
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.04em;
+
+  text-transform: uppercase;
+
+  color: var(--text-faint);
+}
+
+
+/* ============================================================
+   INPUTS
+   ============================================================ */
+
+.signup-field input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  background: var(--bg-0);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-md);
+
+  padding: 11px 13px;
+
+  font-size: 14px;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-body);
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+.signup-field input::placeholder {
+  color: var(--text-faint);
+}
+
+
+.signup-field input:focus {
+  border-color: var(--accent-a);
+
+  box-shadow:
+    0 0 0 3px rgba(124, 156, 255, 0.15);
+}
+
+
+/* ============================================================
+   CREATE ACCOUNT BUTTON
+   ============================================================ */
+
+.signup-submit {
+  margin-top: 5px;
+
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: none;
+
+  border-radius: var(--radius-md);
+
+  font-family: var(--font-body);
+
+  font-weight: 600;
+
+  font-size: 14px;
+
+  color: #0a0d13;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent-a),
+      var(--accent-b)
+    );
+
+  cursor: pointer;
+
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.2s ease,
+    filter 0.15s ease;
+
+  box-shadow:
+    0 10px 24px -10px rgba(124, 156, 255, 0.55);
+}
+
+
+.signup-submit:hover {
+  filter: brightness(1.05);
+
+  transform: translateY(-1px);
+}
+
+
+.signup-submit:active {
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   LOGIN LINK
+   ============================================================ */
+
+.signup-login {
+  text-align: center;
+
+  font-size: 13px;
+
+  color: var(--text-muted);
+
+  margin: 17px 0 0;
+}
+
+
+.signup-login a {
+  color: var(--accent-a);
+
+  text-decoration: none;
+
+  font-weight: 500;
+}
+
+
+.signup-login a:hover {
+  color: var(--accent-b);
+}
+
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+
+.signup-divider {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 20px 0 16px;
+}
+
+
+.signup-divider span {
+  flex: 1;
+
+  height: 1px;
+
+  background: var(--border-soft);
+}
+
+
+.signup-divider p {
+  margin: 0;
+
+  font-size: 10.5px;
+
+  letter-spacing: 0.08em;
+
+  color: var(--text-faint);
+
+  font-family: var(--font-mono);
+}
+
+
+/* ============================================================
+   GITHUB BUTTON
+   ============================================================ */
+
+.signup-github {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  padding: 11px 14px;
+
+  border-radius: var(--radius-md);
+
+  border: 1px solid var(--border);
+
+  background: #141a24;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-body);
+
+  font-weight: 500;
+
+  font-size: 13.5px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    transform 0.12s ease;
+}
+
+
+.signup-github:hover {
+  border-color: var(--accent-a);
+
+  background: #171e2a;
+
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   FOCUS ACCESSIBILITY
+   ============================================================ */
+
+.signup-submit:focus-visible,
+.signup-github:focus-visible,
+.signup-field input:focus-visible,
+.signup-login a:focus-visible {
+  outline: 2px solid var(--accent-b);
+
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 640px) {
+
+  .signup-page {
+    padding: 24px 16px;
+  }
+
+
+  .signup-pipeline {
+    opacity: 0.3;
+
+    top: 4%;
+  }
+
+
+  .signup-glow-a,
+  .signup-glow-b {
+    filter: blur(70px);
+
+    opacity: 0.16;
+  }
+
+}
+
+
+/* Smaller phones */
+
+@media (max-width: 420px) {
+
+  .signup-card {
+    padding: 28px 22px 24px;
+
+    border-radius: 16px;
+  }
+
+
+  .signup-pipeline {
+    display: none;
+  }
+
+
+  .signup-title {
+    font-size: 20px;
+  }
+
+
+  .signup-subtitle {
+    font-size: 13px;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .signup-pipeline path#signupTracePath {
+    animation: none !important;
+  }
+
+
+  .signup-pipeline {
+    animation-play-state: paused !important;
+  }
+
+}
