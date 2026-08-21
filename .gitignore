@@ -1,4 +1,10 @@
-# Python virtual environment
+# Environment variables
+.env
+Backend/.env
+
+# Python virtual environments
+.venv/
+venv/
 Backend/Include/
 Backend/Lib/
 Backend/Scripts/
@@ -8,10 +14,6 @@ Backend/pyvenv.cfg
 __pycache__/
 *.pyc
 
-# Environment variables
-.env
-Backend/.env
-
-# Local virtual environments
-.venv/
-venv/
+# Node
+node_modules/
+dist/git add .gitignore
