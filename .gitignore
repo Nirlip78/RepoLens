@@ -1,6 +1,17 @@
-.env
-.venv/
+# Python virtual environment
+Backend/Include/
+Backend/Lib/
+Backend/Scripts/
+Backend/pyvenv.cfg
+
+# Python cache
 __pycache__/
 *.pyc
-node_modules/
-dist/
+
+# Environment variables
+.env
+Backend/.env
+
+# Local virtual environments
+.venv/
+venv/
